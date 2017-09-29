@@ -62,8 +62,63 @@ namespace NorthwindAPI.Controllers
                     return new
                     {
                         success = true,
-                        data = model
+                        data = new CategoryViewModel
+                        {
+                            CategoryID = model.CategoryID,
+                            CategoryName = model.CategoryName,
+                            Description = model.Description
+                        }
                     };
+            }
+            catch (Exception ex)
+            {
+                return new
+                {
+                    success = false,
+                    message = ex.Message
+                };
+            }
+        }
+        [HttpPost]
+        public object UpdateCategory(CategoryViewModel model)
+        {
+            try
+            {
+                NorthwindEntities db = new NorthwindEntities();
+                var cat = db.Categories.Find(model.CategoryID);
+                cat.CategoryName = model.CategoryName;
+                cat.Description = model.Description;
+                db.SaveChanges();
+                return new
+                {
+                    success = true
+                };
+            }
+            catch (Exception ex)
+            {
+                return new
+                {
+                    success = false,
+                    message = ex.Message
+                };
+            }
+        }
+        [HttpPost]
+        public object NewCategory(CategoryViewModel model)
+        {
+            try
+            {
+                NorthwindEntities db = new NorthwindEntities();
+                db.Categories.Add(new Category()
+                {
+                    CategoryName = model.CategoryName,
+                    Description = model.Description
+                });
+                db.SaveChanges();
+                return new
+                {
+                    success = true
+                };
             }
             catch (Exception ex)
             {

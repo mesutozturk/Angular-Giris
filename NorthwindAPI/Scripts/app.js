@@ -21,6 +21,26 @@ app.service("api", function ($http) {
             }).then(function (response) {
                 success(response.data);
             });
+        },
+        updateCategory: function (model, success) {
+            $http({
+                url: apiUrl + 'UpdateCategory',
+                method: 'POST',
+                data: model,
+                dataType: 'JSON'
+            }).then(function (response) {
+                success(response.data);
+            });
+        },
+        newCategory: function (model, success) {
+            $http({
+                url: apiUrl + 'NewCategory',
+                method: 'POST',
+                data: model,
+                dataType: 'JSON'
+            }).then(function (response) {
+                success(response.data);
+            });
         }
     }
 });
@@ -48,6 +68,28 @@ app.controller("CategoryCtrl", function ($scope, api) {
         $scope.category = {};
         $scope.isnew = true;
         $scope.isopen = true;
+    }
+    $scope.guncelle = function (cat) {
+        api.updateCategory(cat, function (response) {
+            if (response.success) {
+                $scope.category = {};
+                $scope.isnew = false;
+                $scope.isopen = false;
+                init();
+            } else
+                alert(response.message);
+        });
+    }
+    $scope.kaydet = function (cat) {
+        api.newCategory(cat, function (response) {
+            if (response.success) {
+                $scope.category = {};
+                $scope.isnew = false;
+                $scope.isopen = false;
+                init();
+            } else
+                alert(response.message);
+        });
     }
     init();
 });

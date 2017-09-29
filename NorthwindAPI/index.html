@@ -34,7 +34,7 @@
                     </tbody>
                 </table>
             </div>
-            
+
             <div class="col-md-6" ng-show="isopen">
                 <div class="row">
                     <div class="col-md-12">
@@ -45,8 +45,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <input type="button" value="Güncelle" ng-show="!isnew" class="btn btn-danger" />
-                    <input type="button" value="Kaydet" ng-show="isnew" class="btn btn-success" />
+                    <input type="button" value="Güncelle" ng-show="!isnew" class="btn btn-danger"
+                           ng-click="guncelle(category)" />
+                    <input type="button" value="Kaydet" ng-show="isnew" class="btn btn-success"
+                           ng-click="kaydet(category)" />
                 </div>
             </div>
         </div>
