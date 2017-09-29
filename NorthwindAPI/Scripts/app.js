@@ -27,7 +27,9 @@ app.service("api", function ($http) {
 
 app.controller("CategoryCtrl", function ($scope, api) {
     $scope.categories = [];
-
+    $scope.category = {};
+    $scope.isnew = false;
+    $scope.isopen = false;
     function init() {
         api.getAllCategories(function (response) {
             if (response.success)
@@ -36,6 +38,16 @@ app.controller("CategoryCtrl", function ($scope, api) {
                 alert(response.message);
         });
     }
-
+    $scope.duzenle = function (cat) {
+        $scope.category = cat;
+        $scope.isnew = false;
+        $scope.isopen = true;
+        console.log($scope.category)
+    }
+    $scope.yeni = function () {
+        $scope.category = {};
+        $scope.isnew = true;
+        $scope.isopen = true;
+    }
     init();
 });

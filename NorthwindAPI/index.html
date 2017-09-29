@@ -8,11 +8,11 @@
     <script src="Scripts/app.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container" ng-controller="CategoryCtrl">
         <div class="row">
-            <div class="col-md-6" ng-controller="CategoryCtrl">
-                    <input type="text" class="input-sm form-control" ng-model="arama" placeholder="Kategori Ara" />
-                    <input type="button" value="Yeni" class="btn btn-info" />
+            <div class="col-md-6">
+                <input type="text" class="input-sm form-control" ng-model="arama" placeholder="Kategori Ara" />
+                <input type="button" value="Yeni" class="btn btn-info" ng-click="yeni()" />
                 <table class="table table-responsive table-striped">
                     <thead>
                         <tr>
@@ -33,6 +33,21 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            
+            <div class="col-md-6" ng-show="isopen">
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="text" ng-model="category.CategoryName" class="form-control" placeholder="Kategori Adı" />
+                    </div>
+                    <div class="col-md-12">
+                        <input type="text" ng-model="category.Description" class="form-control" placeholder="Kategori Adı" />
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="button" value="Güncelle" ng-show="!isnew" class="btn btn-danger" />
+                    <input type="button" value="Kaydet" ng-show="isnew" class="btn btn-success" />
+                </div>
             </div>
         </div>
     </div>
