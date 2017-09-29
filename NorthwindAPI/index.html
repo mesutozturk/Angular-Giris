@@ -8,6 +8,33 @@
     <script src="Scripts/app.js"></script>
 </head>
 <body>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" ng-controller="CategoryCtrl">
+                    <input type="text" class="input-sm form-control" ng-model="arama" placeholder="Kategori Ara" />
+                    <input type="button" value="Yeni" class="btn btn-info" />
+                <table class="table table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ad</th>
+                            <th>Açıklama</th>
+                            <th>Düzen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="(key, category) in categories | filter:arama">
+                            <td>{{key+1}}</td>
+                            <td>{{category.CategoryName}}</td>
+                            <td>{{category.Description}}</td>
+                            <td>
+                                <input type="button" value="Düzenle" class="btn btn-block btn-success" ng-click="duzenle(category)" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
